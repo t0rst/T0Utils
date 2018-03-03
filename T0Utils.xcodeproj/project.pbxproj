@@ -13,6 +13,8 @@
 		AE1F2C7E20482E2600E31E22 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AE1F2C7C20482E2600E31E22 /* LICENSE */; };
 		AE1F2C7F20482E2600E31E22 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AE1F2C7C20482E2600E31E22 /* LICENSE */; };
 		AE1F2C822048593B00E31E22 /* T0UtilsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F2C512048232000E31E22 /* T0UtilsTestCase.swift */; };
+		AEA87106204A9ED400ADB2DB /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA87105204A9ED400ADB2DB /* Logging.swift */; };
+		AEA87109204ABD5A00ADB2DB /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA87105204A9ED400ADB2DB /* Logging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 		AE1F2C6F2048233B00E31E22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE1F2C7C20482E2600E31E22 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AE1F2C7D20482E2600E31E22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AEA87105204A9ED400ADB2DB /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,7 @@
 		AE1F2C782048242C00E31E22 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				AEA87105204A9ED400ADB2DB /* Logging.swift */,
 				AE1F2C382048228400E31E22 /* Supporting */,
 			);
 			path = Source;
@@ -333,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEA87106204A9ED400ADB2DB /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEA87109204ABD5A00ADB2DB /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
