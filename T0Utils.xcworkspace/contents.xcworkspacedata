@@ -4,4 +4,7 @@
    <FileRef
       location = "container:T0Utils.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Carthage/Checkouts/CwlUtils/CwlUtils.xcodeproj">
+   </FileRef>
 </Workspace>
