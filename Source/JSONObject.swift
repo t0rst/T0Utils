@@ -206,6 +206,35 @@ public enum AnyJSONObject : Codable
 		case .bool(let b) where b == false:		return []
 		default:								return nil
 	} }
+
+	public func value(at keyPath: String) -> AnyJSONObject? {
+		if keyPath.isEmpty { return self }
+		switch self {
+			case .dictionary(let d):
+				let parts = keyPath.split(separator: ".", maxSplits: 1, omittingEmptySubsequences: false)
+				let key = String(parts[0])
+				if let obj = d[key] {
+					if let path = parts.at(1) {
+						return obj.value(at: String(path))
+					} else {
+						return obj
+					}
+				}
+			case .array(let a):
+				let parts = keyPath.split(separator: ".", maxSplits: 1, omittingEmptySubsequences: false)
+				let s = String(parts[0])
+				if let i = Int(s), let obj = a.at(i) {
+					if let path = parts.at(1) {
+						return obj.value(at: String(path))
+					} else {
+						return obj
+					}
+				}
+			default:
+				break
+		}
+		return nil
+	}
 }
 
 
