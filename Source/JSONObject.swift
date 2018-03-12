@@ -97,6 +97,37 @@ public enum AnyJSONObject : Codable
 		self = .dictionary(try values.decode([String:AnyJSONObject].self))
 	}
 
+	enum Errors : Error {
+		case unrepresentable(object: Any, atPath: String)
+	}
+
+	/// Where you have been supplied an untyped object which ought to be encodable as JSON, but you
+	/// don't know for sure, attempt to create an AnyJSONObject instance from it, then write it out.
+	public init(any: Any, _ path: String? = nil) throws { switch any {
+		case let s as String:
+			self = .string(s)
+		case let b as Bool:
+			self = .bool(b)
+		case let i as Int:
+			self = .int(i)
+		case let d as Double:
+			self = .double(d)
+		case let aa as [Any]:
+			let p = path?.appending(".") ?? ""
+			var a = [AnyJSONObject]()
+			try aa.forEach { a.append(try AnyJSONObject(any: $0, p.appending("\(a.count)"))) }
+			self = .array(a)
+		case let dd as [String:Any]:
+			let p = path?.appending(".") ?? ""
+			var d = [String:AnyJSONObject]()
+			try dd.forEach { d[$0.key] = try AnyJSONObject(any: $0.value, p.appending($0.key)) }
+			self = .dictionary(d)
+		case _ as NSNull:
+			self = .null
+		default:
+			throw Errors.unrepresentable(object: any, atPath: path ?? "")
+	} }
+
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.singleValueContainer()
 		switch self {

@@ -125,4 +125,27 @@ class TestJSONObject : XCTestCase {
 		XCTAssertEqual(true, d["trivial_d"]?.asString?.isEmpty)
 		XCTAssertEqual(true, d["trivial_a"]?.asString?.isEmpty)
 	}
+
+	func testJSONObjectFromAny() {
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: NSNull()))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: "string"))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: true))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: 1))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: 1.0))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: []))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: [1,2,3]))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: [1,"A",true]))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: [:]))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: ["":""]))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: ["A":"A"]))
+		XCTAssertNoThrow(_ = try AnyJSONObject(any: ["s":"str","b":true,"i":1,"f":1.0,"a":[1,2,3],"d":["x":"X"]]))
+
+		XCTAssertThrowsError(_ = try AnyJSONObject(any: Date()))
+		enum A { case a }
+		XCTAssertThrowsError(_ = try AnyJSONObject(any: A.a))
+		struct S { var s = "" }
+		XCTAssertThrowsError(_ = try AnyJSONObject(any: S()))
+		XCTAssertThrowsError(_ = try AnyJSONObject(any: [1:""]))
+	}
+
 }
