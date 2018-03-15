@@ -44,12 +44,18 @@ extension UICollectionViewFlowLayout
 				case .vertical:		available.height -= headerReferenceSize.height
 			}
 		}
-		/*	tricky to get this right - see sectionInsetReference comment
-		if let insets = collectionView?.contentInset {
+
+		let accountForContentInset: Bool
+		if #available(iOS 11.0, *) {
+			accountForContentInset = sectionInsetReference == .fromContentInset
+		} else {
+			accountForContentInset = true
+		}
+		if accountForContentInset, let insets = collectionView?.contentInset {
 			available.width -= insets.left + insets.right
 			available.height -= insets.top + insets.bottom
 		}
-		*/
+
 		let maxAcross	=
 			available.width <= 0
 		  ? 0
@@ -81,6 +87,18 @@ extension UICollectionViewFlowLayout
 				case .vertical:		size.height += headerReferenceSize.height
 			}
 		}
+
+		let accountForContentInset: Bool
+		if #available(iOS 11.0, *) {
+			accountForContentInset = sectionInsetReference == .fromContentInset
+		} else {
+			accountForContentInset = true
+		}
+		if accountForContentInset, let insets = collectionView?.contentInset {
+			size.width += insets.left + insets.right
+			size.height += insets.top + insets.bottom
+		}
+
 		return size
 	}
 
