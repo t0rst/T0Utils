@@ -31,6 +31,10 @@ import UIKit
 
 
 
+public typealias FlowLayoutSizingRequest = UICollectionViewFlowLayout.SizingRequest
+
+
+
 extension UICollectionViewFlowLayout
 {
 	open func fixedSizeItems(inArea: CGSize, includeHeader: Bool = false) -> (maxRows: Int, maxCols: Int)? {
@@ -155,6 +159,59 @@ extension UICollectionViewFlowLayout
 		else { return nil }
 		let preferredSize = minSize(forCols: cols, rows: rows)
 		return (preferredSize, Int(fitCount))
+	}
+
+	/// `SizingRequest` conveys a request to `dynamicItemSize(forRequest:)` for explicit size (using `width`/`height`) or size to fit a count in the available space (using `rows`/`cols`), requestable independently for each direction. Zero values defer to non-zero, and fit count defers to explicit size. If both size and count are zero, a count of 1 in that direction is assumed. In the scrolling direction, a non-integral count is allowed, giving the number of items visible at any time. In the non-scrolling dimension, count is rounded, with a minimum of one.
+	public struct SizingRequest {
+		public let width:			CGFloat
+		public let columns:			CGFloat
+		public let height:			CGFloat
+		public let rows:			CGFloat
+		public let ignoreHeader:	Bool
+		public init(sizes s: CGSize, counts c: CGSize, ignoreHeader ih: Bool = false)
+		{ width = s.width ; height = s.height ; columns = c.width ; rows = c.height ; ignoreHeader = ih }
+		public init(width w: CGFloat = 0, columns c: CGFloat = 0, height h: CGFloat = 0, rows r: CGFloat = 0, ignoreHeader ih: Bool = true)
+		{ width = w ; columns = c ; height = h ; rows = r ; ignoreHeader = ih }
+	}
+	/// Calculate the itemSize to fulfill the sizing request, given the current values for scroll direction, spacing, insets and the size of the collection view; see description of `SizingRequest`.
+	open func dynamicItemSize(for request: SizingRequest) -> CGSize {
+		guard let cv = collectionView
+		else { return itemSize }
+
+		var size: CGSize = .zero
+
+		if request.width > 0 {
+			size.width = request.width
+		} else {
+			var cols = max(1, request.columns)
+			if scrollDirection == .vertical {
+				cols = round(cols)
+			}
+			let inset = minSize(forCols: 1, rows: 1).width - itemSize.width
+			let gap = scrollDirection == .vertical ? minimumInteritemSpacing : minimumLineSpacing
+			let available = cv.bounds.size.width - inset + gap
+			size.width = available / cols - gap
+			let scale = UIScreen.main.scale
+			size.width = trunc(size.width * scale) / scale
+		}
+
+		if request.height > 0 {
+			size.height = request.height
+		} else {
+			var rows = max(1, request.rows)
+			if scrollDirection == .horizontal {
+				rows = round(rows)
+			}
+			let inset = minSize(forCols: 1, rows: 1, includeHeader: !request.ignoreHeader).height
+					  - itemSize.height
+			let gap = scrollDirection == .horizontal ? minimumInteritemSpacing : minimumLineSpacing
+			let available = cv.bounds.size.height - inset + gap
+			size.height = available / rows - gap
+			let scale = UIScreen.main.scale
+			size.height = trunc(size.height * scale) / scale
+		}
+
+		return size
 	}
 }
 
