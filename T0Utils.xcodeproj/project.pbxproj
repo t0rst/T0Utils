@@ -34,6 +34,7 @@
 		AEA87109204ABD5A00ADB2DB /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA87105204A9ED400ADB2DB /* Logging.swift */; };
 		AEA8710A204ABD6100ADB2DB /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F2C8B204887B000E31E22 /* JSONObject.swift */; };
 		AEA8710B204ABD6B00ADB2DB /* UnifiedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA87107204AB67600ADB2DB /* UnifiedTypes.swift */; };
+		AEED468E205E4C7D00EB1B16 /* T0StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED468D205E4C7D00EB1B16 /* T0StackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		AE9F4F162058920F00C8DD98 /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		AEA87105204A9ED400ADB2DB /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		AEA87107204AB67600ADB2DB /* UnifiedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnifiedTypes.swift; sourceTree = "<group>"; };
+		AEED468D205E4C7D00EB1B16 /* T0StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T0StackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				AE9F4F142058920E00C8DD98 /* CollectionViewUtils.swift */,
 				AE9F4F152058920F00C8DD98 /* ICSUtilityViews.swift */,
 				AE9F4F162058920F00C8DD98 /* ViewUtils.swift */,
+				AEED468D205E4C7D00EB1B16 /* T0StackView.swift */,
 				AE1F2C382048228400E31E22 /* Supporting */,
 			);
 			path = Source;
@@ -383,6 +386,7 @@
 				AEA87106204A9ED400ADB2DB /* Logging.swift in Sources */,
 				AE9F4F182058920F00C8DD98 /* ICSUtilityViews.swift in Sources */,
 				AE9F4F192058920F00C8DD98 /* ViewUtils.swift in Sources */,
+				AEED468E205E4C7D00EB1B16 /* T0StackView.swift in Sources */,
 				AE9F4F172058920F00C8DD98 /* CollectionViewUtils.swift in Sources */,
 				AE9F4EF72058305400C8DD98 /* Geometry.swift in Sources */,
 				AE1F2C8C204887B000E31E22 /* JSONObject.swift in Sources */,
