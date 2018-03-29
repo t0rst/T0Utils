@@ -37,7 +37,7 @@ public typealias FlowLayoutSizingRequest = UICollectionViewFlowLayout.SizingRequ
 
 extension UICollectionViewFlowLayout
 {
-	open func fixedSizeItems(inArea: CGSize, includeHeader: Bool = false) -> (maxRows: Int, maxCols: Int)? {
+	open func fixedSizeItems(inArea: CGSize, givenContentInsets gci: UIEdgeInsets? = nil, includeHeader: Bool = false) -> (maxRows: Int, maxCols: Int)? {
 		var available = inArea
 		let insets = sectionInset
 		available.width -= insets.left + insets.right
@@ -55,7 +55,7 @@ extension UICollectionViewFlowLayout
 		} else {
 			accountForContentInset = true
 		}
-		if accountForContentInset, let insets = collectionView?.contentInset {
+		if accountForContentInset, let insets = gci ?? collectionView?.contentInset {
 			available.width -= insets.left + insets.right
 			available.height -= insets.top + insets.bottom
 		}
@@ -75,7 +75,7 @@ extension UICollectionViewFlowLayout
 			 : nil
 	}
 	
-	open func minSize(forCols cols: Int, rows: Int, includeHeader: Bool = false) -> CGSize {
+	open func minSize(forCols cols: Int, rows: Int, givenContentInsets gci: UIEdgeInsets? = nil, includeHeader: Bool = false) -> CGSize {
 		guard cols > 0, rows > 0 else { return .zero }
 		var size = CGSize.zero
 		size.width	= CGFloat(cols) * (itemSize.width + minimumInteritemSpacing)
@@ -98,7 +98,7 @@ extension UICollectionViewFlowLayout
 		} else {
 			accountForContentInset = true
 		}
-		if accountForContentInset, let insets = collectionView?.contentInset {
+		if accountForContentInset, let insets = gci ?? collectionView?.contentInset {
 			size.width += insets.left + insets.right
 			size.height += insets.top + insets.bottom
 		}
@@ -173,9 +173,9 @@ extension UICollectionViewFlowLayout
 		public init(width w: CGFloat = 0, columns c: CGFloat = 0, height h: CGFloat = 0, rows r: CGFloat = 0, ignoreHeader ih: Bool = true)
 		{ width = w ; columns = c ; height = h ; rows = r ; ignoreHeader = ih }
 	}
-	/// Calculate the itemSize to fulfill the sizing request, given the current values for scroll direction, spacing, insets and the size of the collection view; see description of `SizingRequest`.
-	open func dynamicItemSize(for request: SizingRequest) -> CGSize {
-		guard let cv = collectionView
+	/// Calculate the itemSize to fulfill the sizing request, given the current values for scroll direction, spacing, insets and using the supplied size or the size of the collection view; see description of `SizingRequest`.
+	open func dynamicItemSize(for request: SizingRequest, givenAvailableSize gs: CGSize? = nil) -> CGSize {
+		guard let availableSize = gs ?? collectionView?.bounds.size
 		else { return itemSize }
 
 		var size: CGSize = .zero
@@ -189,7 +189,7 @@ extension UICollectionViewFlowLayout
 			}
 			let inset = minSize(forCols: 1, rows: 1).width - itemSize.width
 			let gap = scrollDirection == .vertical ? minimumInteritemSpacing : minimumLineSpacing
-			let available = cv.bounds.size.width - inset + gap
+			let available = availableSize.width - inset + gap
 			size.width = available / cols - gap
 			let scale = UIScreen.main.scale
 			size.width = trunc(size.width * scale) / scale
@@ -205,7 +205,7 @@ extension UICollectionViewFlowLayout
 			let inset = minSize(forCols: 1, rows: 1, includeHeader: !request.ignoreHeader).height
 					  - itemSize.height
 			let gap = scrollDirection == .horizontal ? minimumInteritemSpacing : minimumLineSpacing
-			let available = cv.bounds.size.height - inset + gap
+			let available = availableSize.height - inset + gap
 			size.height = available / rows - gap
 			let scale = UIScreen.main.scale
 			size.height = trunc(size.height * scale) / scale
@@ -217,3 +217,14 @@ extension UICollectionViewFlowLayout
 
 
 
+extension UICollectionViewScrollDirection {
+	public init?(lenient string: String) { switch string.lowercased() {
+		case "h", "horz", "horizontal":
+			self = .horizontal
+		case "v", "vert", "vertical":
+			self = .vertical
+		default:
+			return nil
+	} }
+	public init?(_ string: String) { self.init(lenient: string) }
+}
