@@ -133,6 +133,7 @@ open class T0Logging {
 			//   on arm: int sig=2/*SIGINT*/; int call=37/*=sig_kill*/; __asm__("mov r0, %0\nmov r1, %1\nmov r12, %2\nswi 128\nnop\n" : : "r" (getpid()), "r" (sig), "r" (call) : "r12", "r0", "r1", "cc");}
 			// but in swift, there is no inline assembly. I suppose, reluctantly, that a call through 
 			// to an objc helper will have be enough. todo.
+			break_closure(cat)
 		}
 	}
 
@@ -149,6 +150,7 @@ open class T0Logging {
 
 	public static var will_log: Categories = .all
 	public static var will_break: Categories = [.fatal,.fault,.error]
+	public static var break_closure = { (_ : Category)->Void in } // customise at launch; no guards
 	public static var labels = [
 		"  fatal: ",
 		"  error: ",
