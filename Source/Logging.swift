@@ -152,13 +152,13 @@ open class T0Logging {
 	public static var will_break: Categories = [.fatal,.fault,.error]
 	public static var break_closure = { (_ : Category)->Void in } // customise at launch; no guards
 	public static var labels = [
-		"  fatal: ",
-		"  error: ",
-		"  fault: ",
-		"warning: ",
-		"  event: ",
-		"   info: ",
-		"   call: ",
+		"    fatal: ",
+		"*   error: ",
+		"•   fault: ",
+		"! warning: ",
+		">   event: ",
+		":    info: ",
+		"     call: ",
 	]
 	public typealias LoggerID = String
 	public typealias Logger = (String)->Void
@@ -166,7 +166,9 @@ open class T0Logging {
 	public static let kLogger_print = "print"
 	private(set) static var loggersById: [LoggerID:Logger] = [
 	//	kLogger_NSLog:{ NSLog($0) },
-	//	...clipped by small buffer (~1000 chars) on iOS 11.x; temp...
+	//	...clipped by small buffer (~1000 chars) on iOS 11.x...
+	//	seems this is a limitation of the new unified logging
+	//	more here: https://stackoverflow.com/a/40283623/618653
 		kLogger_print:{ print($0) }
 	]
 	public private(set) static var loggers: [Logger] = [Logger](loggersById.values)
