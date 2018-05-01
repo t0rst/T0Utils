@@ -273,11 +273,18 @@ extension T0StackView
 }
 
 
-
+#if swift(>=4.1)
+// Seems swift std lib implicitly gives UILayoutPriority Comparable conformance, possibly via its
+// adoption of RawRepresentable as String; no explicit addition of Comparable to UILayoutPriority
+#else
 extension UILayoutPriority : Comparable {
 	public static func <(lhs: UILayoutPriority, rhs: UILayoutPriority) -> Bool {
 		return lhs.rawValue < rhs.rawValue
 	}
+}
+#endif
+
+extension UILayoutPriority {
 	var predecessor: UILayoutPriority? { return UILayoutPriority(rawValue: self.rawValue - 1) }
 	var successor: UILayoutPriority? { return UILayoutPriority(rawValue: self.rawValue + 1) }
 }

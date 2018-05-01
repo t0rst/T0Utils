@@ -127,7 +127,7 @@ extension CGSize {
 
 extension CGRect
 {
-	public init(_ size: CGSize) { self.origin = .zero ; self.size = size }
+	public init(_ size: CGSize) { self.init() ; self.size = size }
 
 #if os(iOS)
 	public func integralOnScreen(_ screen: UIScreen = .main) -> CGRect {
@@ -207,6 +207,7 @@ extension CGRect
 	}
 
 	public init(size: CGSize, anchor: CGPoint, at: CGPoint) {
+		self.init()
 		self.origin = at - size * anchor
 		self.size = size
 	}
