@@ -32,7 +32,7 @@ import UIKit
 
 
 extension CGFloat {
-	public static let noIntrinsicMetric = UIViewNoIntrinsicMetric
+	public static let noIntrinsicMetric = UIView.noIntrinsicMetric
 }
 
 extension CGSize {

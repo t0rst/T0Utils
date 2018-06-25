@@ -217,7 +217,7 @@ extension UICollectionViewFlowLayout
 
 
 
-extension UICollectionViewScrollDirection {
+extension UICollectionView.ScrollDirection {
 	public init?(lenient string: String) { switch string.lowercased() {
 		case "h", "horz", "horizontal":
 			self = .horizontal

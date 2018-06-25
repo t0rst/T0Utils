@@ -63,8 +63,8 @@ open class T0Unified
 	public typealias ViewController = UIViewController
 
 	public typealias View = UIView
-	public typealias LayoutRelation = NSLayoutRelation
-	public typealias LayoutAttribute = NSLayoutAttribute
+	public typealias LayoutRelation = NSLayoutConstraint.Relation
+	public typealias LayoutAttribute = NSLayoutConstraint.Attribute
 	public typealias LayoutPriority = UILayoutPriority
 
 	public typealias Button = UIButton
@@ -74,7 +74,7 @@ open class T0Unified
 	public typealias TextFieldDelegate = UITextFieldDelegate
 
 	public typealias Image = UIImage
-	public typealias ImageRenderingMode = UIImageRenderingMode
+	public typealias ImageRenderingMode = UIImage.RenderingMode
 	public typealias Color = UIColor
 	public typealias Font = UIFont
 	public typealias FontDescriptor = UIFontDescriptor
@@ -108,7 +108,7 @@ open class T0Unified
 
 #endif
 	public typealias FontDescriptorAttributes = Dictionary<FontDescriptor.AttributeName, Any>
-	public typealias TextAttributes = Dictionary<NSAttributedStringKey, Any>
+	public typealias TextAttributes = Dictionary<NSAttributedString.Key, Any>
 }
 
 

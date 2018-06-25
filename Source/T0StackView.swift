@@ -245,15 +245,15 @@ extension T0StackView
 		super.insertArrangedSubview(view, at: stackIndex)
 	}
 
-    open override var axis: UILayoutConstraintAxis {
+    open override var axis: NSLayoutConstraint.Axis {
     	didSet { if axis != oldValue { invalidateClustering() } }
 	}
 
-    open override var distribution: UIStackViewDistribution {
+    open override var distribution: UIStackView.Distribution {
     	didSet { if distribution != oldValue { invalidateClustering() } }
 	}
 
-    open override var alignment: UIStackViewAlignment {
+    open override var alignment: UIStackView.Alignment {
     	didSet { if alignment != oldValue { invalidateClustering() } }
 	}
 
@@ -291,7 +291,7 @@ extension UILayoutPriority {
 
 
 
-extension UILayoutConstraintAxis {
+extension NSLayoutConstraint.Axis {
 	public init?(lenient string: String) { switch string.lowercased() {
 		case "h", "horz", "horizontal":
 			self = .horizontal
@@ -304,7 +304,7 @@ extension UILayoutConstraintAxis {
 }
 
 
-extension UIStackViewAlignment {
+extension UIStackView.Alignment {
 	public init?(_ string: String) { switch string {
 	    case "fill":
 			self = .fill
@@ -324,7 +324,7 @@ extension UIStackViewAlignment {
 }
 
 
-extension UIStackViewDistribution {
+extension UIStackView.Distribution {
 	public init?(_ string: String) { switch string {
 	    case "fill":
 			self = .fill
