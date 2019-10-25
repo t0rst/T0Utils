@@ -51,23 +51,23 @@ public protocol EnumWithOrdinal
 
 	init?(ordinal: Int)
 
-	static var ordinalMax:	Int { get }
-	static var count:		Int { get }
+	static var ordinalMax:		Int { get }
+	static var count:			Int { get }
 }
 
 
 
 public extension EnumWithOrdinal
 {
-	public var predecessor:			Self? { return Self(ordinal: self.ordinal - 1) }
-	public var successor:			Self? { return Self(ordinal: self.ordinal + 1) }
+	var predecessor:			Self? { return Self(ordinal: self.ordinal - 1) }
+	var successor:				Self? { return Self(ordinal: self.ordinal + 1) }
 
-	public func upTo(_ other: Self)			-> AnySequence<Self> { return self.to(other, up: true, through: false) }
-	public func upThrough(_ other: Self)	-> AnySequence<Self> { return self.to(other, up: true, through: true) }
-	public func downTo(_ other: Self)		-> AnySequence<Self> { return self.to(other, up: false, through: false) }
-	public func downThrough(_ other: Self)	-> AnySequence<Self> { return self.to(other, up: false, through: true) }
+	func upTo(_ other: Self)		-> AnySequence<Self> { return self.to(other, up: true, through: false) }
+	func upThrough(_ other: Self)	-> AnySequence<Self> { return self.to(other, up: true, through: true) }
+	func downTo(_ other: Self)		-> AnySequence<Self> { return self.to(other, up: false, through: false) }
+	func downThrough(_ other: Self)	-> AnySequence<Self> { return self.to(other, up: false, through: true) }
 
-	public func to(_ other: Self, up: Bool, through: Bool) -> AnySequence<Self> {
+	func to(_ other: Self, up: Bool, through: Bool) -> AnySequence<Self> {
 		var cursor: Self? = self
 		let delta = up ? 1 : -1, limit = through ? 0 : 1, targetOrdinal = other.ordinal
 		return AnySequence {
@@ -102,15 +102,15 @@ public protocol OptionSetForEnum : OptionSet
 
 public extension OptionSetForEnum where RawValue == Int
 {
-	public init(_ e: Enum)						{ self.init(rawValue: 1 << e.ordinal) }
+	init(_ e: Enum)								{ self.init(rawValue: 1 << e.ordinal) }
 
 	/// Construct from anything that can yield sequence of enums, e.g. arrays, ranges, iterators, etc
-	public init<SeqOfEnum>(_ seq: SeqOfEnum) where SeqOfEnum : Sequence, SeqOfEnum.Element == Enum {
+	init<SeqOfEnum>(_ seq: SeqOfEnum) where SeqOfEnum : Sequence, SeqOfEnum.Element == Enum {
 		self.init(rawValue: seq.reduce(0, { $0 | (1 << $1.ordinal) } ))
 	}
 
 	/// Yield the enums we represent as a sequence
-	public func enums() -> AnySequence<Enum> {
+	func enums() -> AnySequence<Enum> {
 		var bits = rawValue, index = -1
 		return AnySequence {
 			return AnyIterator {
@@ -128,7 +128,7 @@ public extension OptionSetForEnum where RawValue == Int
 		}
 	}
 
-	public func enumsReversed() -> AnySequence<Enum> {
+	func enumsReversed() -> AnySequence<Enum> {
 		var index = Enum.count
 		var bits = rawValue & ((1 << index) - 1)
 		return AnySequence {
@@ -147,8 +147,8 @@ public extension OptionSetForEnum where RawValue == Int
 		}
 	}
 
-	public static func setOfNone() -> Self		{ return Self(rawValue: 0) }
-	public static func setOfAllEnum() -> Self	{ return Self(rawValue: (1 << Enum.count) - 1) }
+	static func setOfNone() -> Self		{ return Self(rawValue: 0) }
+	static func setOfAllEnum() -> Self	{ return Self(rawValue: (1 << Enum.count) - 1) }
 }
 
 

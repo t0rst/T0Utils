@@ -113,17 +113,6 @@ open class T0Unified
 
 
 
-#if os(iOS)
-#elseif os(macOS)
-extension T0Unified.StoryboardSegueID : ExpressibleByStringLiteral {
-	public init(stringLiteral value: String) { self.init(rawValue: value) }
-	public init(extendedGraphemeClusterLiteral value: String) { self.init(rawValue: value) }
-	public init(unicodeScalarLiteral value: String) { self.init(rawValue: value) }
-}
-#endif
-
-
-
 extension T0Unified.StoryboardSegue {
 #if os(iOS)
 	open var sourceController: T0Unified.ViewController { return source }

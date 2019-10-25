@@ -1,1 +1,1 @@
-github "mattgallagher/CwlUtils" "xcode10"
+github "mattgallagher/CwlUtils" ~> 2.0.0

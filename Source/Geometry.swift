@@ -106,7 +106,7 @@ extension CGSize {
 	/// ordering allows tests; returns nil for .zero
 	public var aspectFactor: CGFloat? {
 		guard width != 0, height != 0 else { return nil }
-		let ah = fabs(height), aw = fabs(width), base = ah + aw
+		let ah = abs(height), aw = abs(width), base = ah + aw
 		return base > 1e-10 ? ah / base : 0
 	}
 	/// returns an `Aspects` set with the two `Aspect` values that bracket the aspect of this size
@@ -234,8 +234,8 @@ public func pointAt(t: CGFloat, onBezier a: CGPoint, _ b: CGPoint, _ c: CGPoint,
 	else { return nil }
 	let t0 = 1 - t
 	let t1 = t
-	if fabs(t1) < 1e-10 { return a } // near enough to an anchor point
-	if fabs(t0) < 1e-10 { return d } // near enough to an anchor point
+	if abs(t1) < 1e-10 { return a } // near enough to an anchor point
+	if abs(t0) < 1e-10 { return d } // near enough to an anchor point
 	let a_ = t0 * a + b * t1
 	let b_ = t0 * b + c * t1
 	let c_ = t0 * c + d * t1
@@ -260,7 +260,7 @@ public func pointAt(t posn: CGFloat, onBezierPath points: ArraySlice<CGPoint>) -
 	let t = posn - CGFloat(n)
 	let idx0 = n * 3 // index of first point of bezier of interest
 	let idx3 = idx0 + 3 // index of last point of bezier of interest
-	if fabs(t) < 1e-10 { // cover special case: t≈0 and idx0 = last point of interest
+	if abs(t) < 1e-10 { // cover special case: t≈0 and idx0 = last point of interest
 		guard idx0 < points.count
 		else { return nil }
 		return points[points.startIndex.advanced(by: idx0)]
@@ -286,7 +286,7 @@ public func disect(bezier a: CGPoint, _ b: CGPoint, _ c: CGPoint, _ d: CGPoint,
 	let t0 = 1 - t
 	let t1 = t
 
-	guard fabs(t1) > 1e-10 && fabs(t0) > 1e-10 // near enough to first or last anchor point
+	guard abs(t1) > 1e-10 && abs(t0) > 1e-10 // near enough to first or last anchor point
 	else {
 		if includeInitial { container.append(a) }
 		container.append(contentsOf: [b, c, d])

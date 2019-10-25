@@ -245,7 +245,8 @@ public enum AnyJSONObject : Codable
 				let parts = keyPath.split(separator: ".", maxSplits: 1, omittingEmptySubsequences: false)
 				let key = String(parts[0])
 				if let obj = d[key] {
-					if let path = parts.at(1) {
+					if 1 < parts.count {
+						let path = parts[1]
 						return obj.value(at: String(path))
 					} else {
 						return obj
@@ -254,8 +255,10 @@ public enum AnyJSONObject : Codable
 			case .array(let a):
 				let parts = keyPath.split(separator: ".", maxSplits: 1, omittingEmptySubsequences: false)
 				let s = String(parts[0])
-				if let i = Int(s), let obj = a.at(i) {
-					if let path = parts.at(1) {
+				if let i = Int(s), i < a.count {
+					let obj = a[i]
+					if  1 < parts.count {
+						let path = parts[1]
 						return obj.value(at: String(path))
 					} else {
 						return obj
@@ -399,7 +402,7 @@ public struct JSONStringable : Codable {
 
 public extension JSONEncoder
 {
-	public enum EncodePairError : Error {
+	enum EncodePairError : Error {
 		case incompatibleTopLevelObjects
 		case dataWithEncodingFailed
 	}
@@ -413,7 +416,7 @@ public extension JSONEncoder
 	/// (dictionary or array) at top JSON level and that, in the case of combining dictionaries,
 	/// the top level keys for each object are distinct. If the latter is not the case, then
 	/// invalid JSON will be returned, as no checking is done.
-	public func encodePair<T : Encodable, U : Encodable>(_ value1: T, _ value2: U) throws -> Data
+	func encodePair<T : Encodable, U : Encodable>(_ value1: T, _ value2: U) throws -> Data
 	{
 		let data1 = try encode(value1)
 		let data2 = try encode(value2)
