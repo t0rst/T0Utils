@@ -48,29 +48,29 @@ class Log : T0Logging {}
 /// ```
 open class T0Logging {
 
-	@inlinable public static func	fatal										 (_ msg: @autoclosure () -> String) { self.log(msg, cat: .fatal) }
-	@inlinable public static func	fatalIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test, msg, cat: .fatal) }
-	@inlinable public static func	fatalIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test, msg, cat: .fatal) }
-	@inlinable public static func	error										 (_ msg: @autoclosure () -> String) { self.log(msg, cat: .error) }
-	@inlinable public static func	errorIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test, msg, cat: .error) }
-	@inlinable public static func	errorIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test, msg, cat: .error) }
-	@inlinable public static func	fault										 (_ msg: @autoclosure () -> String) { self.log(msg, cat: .fault) }
-	@inlinable public static func	faultIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test, msg, cat: .fault) }
-	@inlinable public static func	faultIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test, msg, cat: .fault) }
+	@inlinable public static func	fatal										 (_ msg: @autoclosure () -> String) { self.log(msg(), cat: .fatal) }
+	@inlinable public static func	fatalIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test(), msg(), cat: .fatal) }
+	@inlinable public static func	fatalIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test(), msg(), cat: .fatal) }
+	@inlinable public static func	error										 (_ msg: @autoclosure () -> String) { self.log(msg(), cat: .error) }
+	@inlinable public static func	errorIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test(), msg(), cat: .error) }
+	@inlinable public static func	errorIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test(), msg(), cat: .error) }
+	@inlinable public static func	fault										 (_ msg: @autoclosure () -> String) { self.log(msg(), cat: .fault) }
+	@inlinable public static func	faultIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test(), msg(), cat: .fault) }
+	@inlinable public static func	faultIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test(), msg(), cat: .fault) }
 	// ...fault means should never occur and is under our control, which means a logic fubar somewhere.
 
-	@inlinable public static func	warning										 (_ msg: @autoclosure () -> String) { self.log(msg, cat: .warning) }
-	@inlinable public static func	warningIf	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test, msg, cat: .warning) }
-	@inlinable public static func	warningIfNot(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test, msg, cat: .warning) }
-	@inlinable public static func	event										 (_ msg: @autoclosure () -> String) { self.log(msg, cat: .event) }
-	@inlinable public static func	eventIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test, msg, cat: .event) }
-	@inlinable public static func	eventIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test, msg, cat: .event) }
-	@inlinable public static func	info										 (_ msg: @autoclosure () -> String) { self.log(msg, cat: .info) }
-	@inlinable public static func	infoIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test, msg, cat: .info) }
-	@inlinable public static func	infoIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test, msg, cat: .info) }
-	@inlinable public static func	call										 (_ msg: @autoclosure () -> String) { self.log(msg, cat: .call) }
-	@inlinable public static func	callIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test, msg, cat: .call) }
-	@inlinable public static func	callIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test, msg, cat: .call) }
+	@inlinable public static func	warning										 (_ msg: @autoclosure () -> String) { self.log(msg(), cat: .warning) }
+	@inlinable public static func	warningIf	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test(), msg(), cat: .warning) }
+	@inlinable public static func	warningIfNot(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test(), msg(), cat: .warning) }
+	@inlinable public static func	event										 (_ msg: @autoclosure () -> String) { self.log(msg(), cat: .event) }
+	@inlinable public static func	eventIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test(), msg(), cat: .event) }
+	@inlinable public static func	eventIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test(), msg(), cat: .event) }
+	@inlinable public static func	info										 (_ msg: @autoclosure () -> String) { self.log(msg(), cat: .info) }
+	@inlinable public static func	infoIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test(), msg(), cat: .info) }
+	@inlinable public static func	infoIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test(), msg(), cat: .info) }
+	@inlinable public static func	call										 (_ msg: @autoclosure () -> String) { self.log(msg(), cat: .call) }
+	@inlinable public static func	callIf		(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIf(test(), msg(), cat: .call) }
+	@inlinable public static func	callIfNot	(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String) { self.logIfNot(test(), msg(), cat: .call) }
 
 	@inlinable public static
 	func logIf(_ test: @autoclosure () -> Bool, _ msg: @autoclosure () -> String, cat: Category) {

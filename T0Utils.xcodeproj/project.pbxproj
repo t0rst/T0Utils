@@ -308,20 +308,22 @@
 				TargetAttributes = {
 					AE1F2C432048231F00E31E22 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 					AE1F2C4B2048232000E31E22 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 					AE1F2C5F2048233A00E31E22 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 					AE1F2C672048233A00E31E22 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -577,6 +579,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -603,6 +606,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -622,6 +626,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.satisfyingstructures.T0Utils-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -639,6 +644,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.satisfyingstructures.T0Utils-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -664,6 +670,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -690,6 +697,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -709,6 +717,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.satisfyingstructures.T0Utils-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -726,6 +735,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.satisfyingstructures.T0Utils-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
