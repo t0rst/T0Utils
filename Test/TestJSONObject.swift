@@ -124,6 +124,32 @@ class TestJSONObject : XCTestCase {
 		XCTAssertEqual(true, d["trivial_b"]?.asArray?.isEmpty)
 		XCTAssertEqual(true, d["trivial_d"]?.asString?.isEmpty)
 		XCTAssertEqual(true, d["trivial_a"]?.asString?.isEmpty)
+
+		// dynamicMemberLookup
+		if case .dictionary	= obj.d {} else { XCTFail("dynamic obj.d access failed") }
+		if case .array		= obj.a {} else { XCTFail("dynamic obj.a access failed") }
+		if case .string		= obj.s {} else { XCTFail("dynamic obj.s access failed") }
+		if case .int		= obj.i {} else { XCTFail("dynamic obj.i access failed") }
+		if case .double		= obj.f {} else { XCTFail("dynamic obj.f access failed") }
+		if case .bool		= obj.b {} else { XCTFail("dynamic obj.b access failed") }
+
+		// subscript
+		if case .dictionary	= obj["d"] {} else { XCTFail("subscript obj[\"d\"] access failed") }
+		if case .array		= obj["a"] {} else { XCTFail("subscript obj[\"a\"] access failed") }
+		if case .string		= obj["s"] {} else { XCTFail("subscript obj[\"s\"] access failed") }
+		if case .int		= obj["i"] {} else { XCTFail("subscript obj[\"i\"] access failed") }
+		if case .double		= obj["f"] {} else { XCTFail("subscript obj[\"f\"] access failed") }
+		if case .bool		= obj["b"] {} else { XCTFail("subscript obj[\"b\"] access failed") }
+
+		// hasValue
+		XCTAssertFalse(obj.hasValue(forKey: "z"))
+		XCTAssertTrue(obj.hasValue(forKey: "a"))
+		if let a = obj.a {
+			XCTAssertTrue(a.hasValue(atIndex: 2))
+			XCTAssertFalse(a.hasValue(atIndex: 3))
+			XCTAssertNotNil(a[index: 2])
+			XCTAssertNil(a[index: 3])
+		}
 	}
 
 	func testJSONObjectFromAny() {

@@ -42,6 +42,7 @@ import Foundation
 /// JavaScript: the as<Type> accessors will convert where possible, typically any empty value can
 /// converted to another empty value, any POD type can be converted to a string, and vice versa
 /// where exactly representable.
+@dynamicMemberLookup
 public enum AnyJSONObject : Codable
 {
 	case string(String)
@@ -269,6 +270,31 @@ public enum AnyJSONObject : Codable
 		}
 		return nil
 	}
+
+	public subscript(dynamicMember member: String) -> AnyJSONObject? { switch self {
+		case .dictionary(let d):		return d[member]
+		default:						return nil
+	} }
+
+	public subscript(key: String) -> AnyJSONObject? { switch self {
+		case .dictionary(let d):		return d[key]
+		default:						return nil
+	} }
+
+	public subscript(index x: Int) -> AnyJSONObject? { switch self {
+		case .array(let a):				return 0 <= x && x < a.count ? a[x] : nil
+		default:						return nil
+	} }
+
+	public func hasValue(forKey k: String) -> Bool { switch self {
+		case .dictionary(let d):		return d.index(forKey: k) != nil
+		default:						return false
+	} }
+
+	public func hasValue(atIndex x: Int) -> Bool { switch self {
+		case .array(let a):				return 0 <= x && x < a.count
+		default:						return false
+	} }
 }
 
 
