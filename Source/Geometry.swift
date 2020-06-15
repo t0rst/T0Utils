@@ -60,7 +60,7 @@ public func +(a: CGFloat, b: CGSize) -> CGSize { return CGSize(width: a + b.widt
 public func -(a: CGFloat, b: CGSize) -> CGSize { return CGSize(width: a - b.width, height: a - b.height) }
 public func *(a: CGFloat, b: CGSize) -> CGSize { return CGSize(width: a * b.width, height: a * b.height) }
 
-public prefix func -(p: CGPoint) -> CGPoint { return CGPoint(x: p.x, y: p.y) }
+public prefix func -(p: CGPoint) -> CGPoint { return CGPoint(x: -p.x, y: -p.y) }
 
 public func +(a: CGPoint, b: CGPoint) -> CGPoint { return CGPoint(x: a.x + b.x, y: a.y + b.y) }
 public func -(a: CGPoint, b: CGPoint) -> CGPoint { return CGPoint(x: a.x - b.x, y: a.y - b.y) }
@@ -216,14 +216,16 @@ extension CGRect
 public func rotate<T>(_ index: T, by: T, within n: T) -> T
 where T : SignedInteger
 {
+	guard n > T(0) else { return T(0) }
 	var i = (index + by) % n
-	if i < 0 { i += n }
+	if i < T(0) { i += n }
 	return i
 }
 
 public func rotate<T>(_ index: T, by: T, within n: T) -> T
 where T : FloatingPoint
 {
+	guard n > T(0) else { return T(0) }
 	var i = (index + by).remainder(dividingBy: n)
 	if i < T(0) { i += n }
 	return i
@@ -328,7 +330,7 @@ public func divide(bezier a: CGPoint, _ b: CGPoint, _ c: CGPoint, _ d: CGPoint,
 				   by count: Int, into container: inout [CGPoint],
 				   includingInitialPoint: Bool? = nil) -> Int?
 {
-	guard count >= 0 else { return nil }
+	guard count > 0 else { return nil }
 	let countWas = container.count
 	if includingInitialPoint ?? (container.isEmpty || a != container[0]) {
 		container.append(a)
@@ -347,8 +349,6 @@ public func divide(bezier a: CGPoint, _ b: CGPoint, _ c: CGPoint, _ d: CGPoint,
 		container.append(contentsOf: buffer[1...3])
 		segment -= 1
 	}
-	let i = buffer.endIndex.advanced(by: -3)
-	container.append(contentsOf: buffer[i ..< buffer.endIndex] )
 	return container.count - countWas
 }
 

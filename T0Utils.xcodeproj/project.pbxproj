@@ -24,6 +24,8 @@
 		AE1F2C9C2048AC6100E31E22 /* TestFeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F2C962048AAF500E31E22 /* TestFeeder.swift */; };
 		AE1F2C9D2048AC6300E31E22 /* TestFeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F2C962048AAF500E31E22 /* TestFeeder.swift */; };
 		AE1F2C9E2048AC7500E31E22 /* Feeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F2C942048AA4700E31E22 /* Feeder.swift */; };
+		AE78556920E4FF1B009FA947 /* TestGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE78556820E4FF1B009FA947 /* TestGeometry.swift */; };
+		AE78556A20E4FF1B009FA947 /* TestGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE78556820E4FF1B009FA947 /* TestGeometry.swift */; };
 		AE9F4EF72058305400C8DD98 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F4EF62058305400C8DD98 /* Geometry.swift */; };
 		AE9F4EF82058306E00C8DD98 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F4EF62058305400C8DD98 /* Geometry.swift */; };
 		AE9F4F172058920F00C8DD98 /* CollectionViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F4F142058920E00C8DD98 /* CollectionViewUtils.swift */; };
@@ -72,6 +74,7 @@
 		AE1F2C942048AA4700E31E22 /* Feeder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feeder.swift; sourceTree = "<group>"; };
 		AE1F2C962048AAF500E31E22 /* TestFeeder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestFeeder.swift; sourceTree = "<group>"; };
 		AE1F2C992048AB6F00E31E22 /* CwlUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CwlUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE78556820E4FF1B009FA947 /* TestGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeometry.swift; sourceTree = "<group>"; };
 		AE9F4EF62058305400C8DD98 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		AE9F4F142058920E00C8DD98 /* CollectionViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewUtils.swift; sourceTree = "<group>"; };
 		AE9F4F152058920F00C8DD98 /* ICSUtilityViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICSUtilityViews.swift; sourceTree = "<group>"; };
@@ -181,6 +184,7 @@
 				AE1F2C512048232000E31E22 /* TestJSONObject.swift */,
 				AE1F2C8F2048970D00E31E22 /* TestSwiftStdLibUtils.swift */,
 				AE1F2C962048AAF500E31E22 /* TestFeeder.swift */,
+				AE78556820E4FF1B009FA947 /* TestGeometry.swift */,
 				AE1F2C7A2048247B00E31E22 /* _iOS */,
 				AE1F2C7B2048249100E31E22 /* _macOS */,
 			);
@@ -405,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE1F2C9C2048AC6100E31E22 /* TestFeeder.swift in Sources */,
+				AE78556920E4FF1B009FA947 /* TestGeometry.swift in Sources */,
 				AE1F2C522048232000E31E22 /* TestJSONObject.swift in Sources */,
 				AE1F2C912048971B00E31E22 /* TestSwiftStdLibUtils.swift in Sources */,
 			);
@@ -428,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE1F2C9D2048AC6300E31E22 /* TestFeeder.swift in Sources */,
+				AE78556A20E4FF1B009FA947 /* TestGeometry.swift in Sources */,
 				AE1F2C822048593B00E31E22 /* TestJSONObject.swift in Sources */,
 				AE1F2C922048971C00E31E22 /* TestSwiftStdLibUtils.swift in Sources */,
 			);
