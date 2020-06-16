@@ -48,7 +48,7 @@ class TestFeeder: XCTestCase {
 		// Given
 		let expectation = self.expectation(description: "should complete")
 		let valuesStart = [Int]()
-		var valuesIn = valuesStart
+		let valuesIn = valuesStart
 		var valuesRemaining = valuesIn[..<valuesIn.endIndex]
 		var valuesOut = [Int]()
 		typealias IntFeeder = Feeder<Int>
@@ -64,8 +64,9 @@ class TestFeeder: XCTestCase {
 			$1($0, nil)
 		}
 		let feeder = IntFeeder(
-			doGet: doGet, doAct: doAct,
-			didComplete: { expectation.fulfill() }
+			doGet:			doGet,
+			doAct:			doAct,
+			didComplete:	{ expectation.fulfill() }
 		)
 
 		// When
@@ -81,7 +82,7 @@ class TestFeeder: XCTestCase {
 		// Given
 		let expectation = self.expectation(description: "should complete")
 		let valuesStart = [Int](0..<10)
-		var valuesIn = valuesStart
+		let valuesIn = valuesStart
 		var valuesRemaining = valuesIn[..<valuesIn.endIndex]
 		var valuesOut = [Int]()
 		typealias IntFeeder = Feeder<Int>
@@ -97,8 +98,9 @@ class TestFeeder: XCTestCase {
 			$1($0, nil)
 		}
 		let feeder = IntFeeder(
-			doGet: doGet, doAct:doAct,
-			didComplete: { expectation.fulfill() }
+			doGet:			doGet,
+			doAct:			doAct,
+			didComplete:	{ expectation.fulfill() }
 		)
 
 		// When
@@ -114,7 +116,7 @@ class TestFeeder: XCTestCase {
 		// Given
 		let expectation = self.expectation(description: "should complete")
 		let valuesStart = [Int](0..<10)
-		var valuesIn = valuesStart
+		let valuesIn = valuesStart
 		var valuesRemaining = valuesIn[..<valuesIn.endIndex]
 		var valuesOut = [Int]()
 		typealias IntFeeder = Feeder<Int>
@@ -130,8 +132,9 @@ class TestFeeder: XCTestCase {
 			DispatchQueue.main.async { didAct(value, nil) }
 		}
 		let feeder = IntFeeder(
-			doGet: doGet, doAct: doAct,
-			didComplete: { expectation.fulfill() }
+			doGet:			doGet,
+			doAct:			doAct,
+			didComplete:	{ expectation.fulfill() }
 		)
 
 		// When
@@ -147,7 +150,7 @@ class TestFeeder: XCTestCase {
 		// Given
 		let expectation = self.expectation(description: "should complete")
 		let valuesStart = [Int](0..<50)
-		var valuesIn = valuesStart
+		let valuesIn = valuesStart
 		var valuesRemaining = valuesIn[..<valuesIn.endIndex]
 		var valuesOut = [Int]()
 		typealias IntFeeder = Feeder<Int>
@@ -163,9 +166,10 @@ class TestFeeder: XCTestCase {
 			DispatchQueue.main.async { didAct(value, nil) }
 		}
 		let feeder = IntFeeder(
-			doGet: doGet, doAct: doAct,
-			concurrent: { 5 },
-			didComplete: { expectation.fulfill() }
+			doGet:			doGet,
+			doAct:			doAct,
+			concurrent:		{ 5 },
+			didComplete:	{ expectation.fulfill() }
 		)
 
 		// When

@@ -43,9 +43,10 @@ extension UICollectionViewFlowLayout
 		available.width -= insets.left + insets.right
 		available.height -= insets.top + insets.bottom
 		if includeHeader {
-			switch scrollDirection {
-				case .horizontal:	available.width -= headerReferenceSize.width
-				case .vertical:		available.height -= headerReferenceSize.height
+			if scrollDirection == .horizontal {
+				available.width -= headerReferenceSize.width
+			} else {
+				available.height -= headerReferenceSize.height
 			}
 		}
 
@@ -86,9 +87,10 @@ extension UICollectionViewFlowLayout
 		size.width += insets.left + insets.right
 		size.height += insets.top + insets.bottom
 		if includeHeader {
-			switch scrollDirection {
-				case .horizontal:	size.width += headerReferenceSize.width
-				case .vertical:		size.height += headerReferenceSize.height
+			if scrollDirection == .horizontal {
+				size.width += headerReferenceSize.width
+			} else {
+				size.height += headerReferenceSize.height
 			}
 		}
 
