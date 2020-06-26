@@ -98,7 +98,7 @@ extension CGSize {
 		public let	 rawValue: Aspect.RawValue
 		public init(rawValue: RawValue)				{ self.rawValue = rawValue }
 		public init(_ aspect: Aspect)					{ self.rawValue = aspect.rawValue }
-		public static let vertical = Aspects(.vertical), skyscraper = Aspects(.skyscraper), standing = Aspects(.standing), portrait = Aspects(.portrait), square = Aspects(.square), landscape = Aspects(.landscape), lying = Aspects(.lying), panorama = Aspects(.panorama), horizon = Aspects(.horizon), none = Aspects(rawValue: 0)
+		public static let vertical = Aspects(.vertical), skyscraper = Aspects(.skyscraper), standing = Aspects(.standing), portrait = Aspects(.portrait), square = Aspects(.square), landscape = Aspects(.landscape), lying = Aspects(.lying), panorama = Aspects(.panorama), horizon = Aspects(.horizon), none = Aspects([])
 		/// `mixed` returns true for any combination other than a single or two consecutive aspect values
 		public var mixed: Bool { var n = rawValue ; while n > 2 { n >>= 1 } ; return 0 != ( n & ~3 ) }
 	}
